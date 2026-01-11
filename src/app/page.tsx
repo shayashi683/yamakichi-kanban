@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 import Card from '@/components/Card';
-import Badge from '@/components/Badge';
 import plans from '@/data/plans.json';
 import mountains from '@/data/mountains.json';
-import { Plan, Mountain, Difficulty } from '@/types';
+import { Plan, Mountain } from '@/types';
 
 // 難易度に応じたグラデーション
 const getGradient = (difficulty: string, isWinter: boolean) => {
