@@ -6,6 +6,23 @@ import plans from '@/data/plans.json';
 import mountains from '@/data/mountains.json';
 import { Plan, Mountain, Difficulty } from '@/types';
 
+// 難易度に応じたグラデーション
+const getGradient = (difficulty: string, isWinter: boolean) => {
+  if (isWinter) {
+    return 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)';
+  }
+  switch (difficulty) {
+    case '初級':
+      return 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)';
+    case '中級':
+      return 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+    case '上級':
+      return 'linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%)';
+    default:
+      return 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+  }
+};
+
 export default function Home() {
   // 日付でソート（新しい順）
   const sortedPlans = [...(plans as Plan[])].sort(
@@ -21,105 +38,88 @@ export default function Home() {
       />
 
       {sortedPlans.length > 0 ? (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedPlans.map((plan) => {
             const mountain = (mountains as Mountain[]).find(
               (m) => m.id === plan.mountainId
             );
             const planDate = new Date(plan.date);
             const isUpcoming = planDate >= new Date();
-            const isPast = planDate < new Date();
+            const month = planDate.getMonth() + 1;
+            const isWinter = month === 12 || month === 1 || month === 2 || month === 3;
 
             return (
               <Link key={plan.id} href={`/plans/${plan.id}`}>
-                <Card hover>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                    {/* 日付 */}
-                    <div className="flex-shrink-0 text-center sm:text-left">
-                      <div
-                        className={`inline-block px-4 py-2 rounded-lg ${
-                          isUpcoming
-                            ? 'bg-winter-sky text-white'
-                            : 'bg-gray-200 text-gray-600'
-                        }`}
-                      >
-                        <div className="text-2xl font-bold">
-                          {planDate.getDate()}
-                        </div>
-                        <div className="text-sm">
+                <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                  {/* 背景グラデーション */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: getGradient(mountain?.difficulty || '', isWinter),
+                    }}
+                  />
+
+                  {/* 山のシルエット装飾 */}
+                  <div className="absolute bottom-0 left-0 right-0 h-24 opacity-20">
+                    <svg viewBox="0 0 400 100" preserveAspectRatio="none" className="w-full h-full">
+                      <path
+                        d="M0,100 L0,60 L50,30 L100,50 L150,20 L200,45 L250,15 L300,40 L350,25 L400,50 L400,100 Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* コンテンツ */}
+                  <div className="relative p-6 h-56 flex flex-col justify-between text-white">
+                    {/* 上部：日付とステータス */}
+                    <div className="flex justify-between items-start">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2">
+                        <div className="text-3xl font-bold">{planDate.getDate()}</div>
+                        <div className="text-sm opacity-90">
                           {planDate.toLocaleDateString('ja-JP', {
                             month: 'short',
-                            year: 'numeric',
                           })}
                         </div>
                       </div>
+                      {isUpcoming && (
+                        <span className="bg-white/90 text-green-600 text-xs font-bold px-3 py-1 rounded-full">
+                          予定
+                        </span>
+                      )}
+                      {!isUpcoming && (
+                        <span className="bg-white/60 text-gray-700 text-xs font-bold px-3 py-1 rounded-full">
+                          完了
+                        </span>
+                      )}
                     </div>
 
-                    {/* 計画情報 */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <h2 className="font-bold text-lg text-mountain-dark truncate">
-                          {plan.title}
-                        </h2>
-                        {isUpcoming && (
-                          <span className="flex-shrink-0 text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full">
-                            予定
-                          </span>
-                        )}
-                        {isPast && (
-                          <span className="flex-shrink-0 text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
-                            完了
-                          </span>
-                        )}
-                      </div>
-
+                    {/* 下部：山情報 */}
+                    <div>
+                      <h2 className="font-bold text-xl mb-2 drop-shadow-md">
+                        {plan.title}
+                      </h2>
                       {mountain && (
-                        <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
-                          <span className="flex items-center gap-1">
+                        <div className="flex items-center gap-3 text-sm">
+                          <span className="flex items-center gap-1 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
                             <span>⛰️</span>
-                            {mountain.name}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <span>📏</span>
                             {mountain.elevation.toLocaleString()}m
                           </span>
-                          <Badge
-                            variant="difficulty"
-                            difficulty={mountain.difficulty as Difficulty}
-                          />
+                          <span className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                            {mountain.difficulty}
+                          </span>
+                          {isWinter && (
+                            <span className="bg-white/30 backdrop-blur-sm rounded-full px-2 py-1">
+                              ❄️
+                            </span>
+                          )}
                         </div>
                       )}
-
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <span>📍</span>
-                          {plan.schedule.length} ポイント
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <span>🎒</span>
-                          {plan.equipmentIds.length} 装備
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* 矢印 */}
-                    <div className="hidden sm:block text-gray-400">
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
                     </div>
                   </div>
-                </Card>
+
+                  {/* ホバー時のオーバーレイ */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                </div>
               </Link>
             );
           })}
