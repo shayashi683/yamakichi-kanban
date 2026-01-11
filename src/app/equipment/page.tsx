@@ -5,7 +5,7 @@ import PageHeader from '@/components/PageHeader';
 import Card from '@/components/Card';
 import equipment from '@/data/equipment.json';
 import templates from '@/data/equipment-templates.json';
-import { EquipmentItem, EquipmentCategory, EquipmentTemplate, TripType, RequirementLevel } from '@/types';
+import { EquipmentItem, EquipmentCategory, EquipmentTemplate } from '@/types';
 
 const categoryIcons: Record<EquipmentCategory, string> = {
   '服装': '👕',
@@ -22,10 +22,11 @@ export default function EquipmentPage() {
   const [selectedTemplate, setSelectedTemplate] = useState<string>('');
   const [showWinterOnly, setShowWinterOnly] = useState(false);
 
-  // ローカルストレージから読み込み
+  // ローカルストレージから読み込み（初回マウント時のみ）
   useEffect(() => {
     const saved = localStorage.getItem('equipment-checked');
     if (saved) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage初期化は正当なユースケース
       setCheckedItems(JSON.parse(saved));
     }
   }, []);
