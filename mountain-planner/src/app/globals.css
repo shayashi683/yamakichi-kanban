@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  /* 雪山テーマ カラーパレット */
+  --snow-white: #ffffff;
+  --ice-blue: #f0f9ff;
+  --glacier: #e0f2fe;
+  --sky-light: #bae6fd;
+  --sky: #38bdf8;
+  --winter-sky: #0ea5e9;
+  --deep-blue: #0284c7;
+  --night-blue: #1e40af;
+  --mountain-dark: #1e3a5f;
+  
+  --background: var(--ice-blue);
+  --foreground: var(--mountain-dark);
+  --card-bg: var(--snow-white);
+  --primary: var(--night-blue);
+  --primary-light: var(--winter-sky);
+  --accent: var(--sky);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card-bg);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-snow: var(--snow-white);
+  --color-ice: var(--ice-blue);
+  --color-glacier: var(--glacier);
+  --color-sky-light: var(--sky-light);
+  --color-sky: var(--sky);
+  --color-winter-sky: var(--winter-sky);
+  --color-deep-blue: var(--deep-blue);
+  --color-night-blue: var(--night-blue);
+  --color-mountain-dark: var(--mountain-dark);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: linear-gradient(180deg, var(--ice-blue) 0%, var(--glacier) 100%);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* カスタムスクロールバー（雪山テーマ） */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glacier);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sky);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--winter-sky);
+}
+
+/* カードスタイル */
+.card {
+  background: var(--snow-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.1), 0 2px 4px -2px rgba(30, 64, 175, 0.1);
+  border: 1px solid var(--glacier);
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.15), 0 4px 6px -4px rgba(30, 64, 175, 0.1);
+}
+
+/* ボタンスタイル */
+.btn-primary {
+  background: linear-gradient(135deg, var(--night-blue) 0%, var(--deep-blue) 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+/* 難易度バッジ */
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-beginner {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-intermediate {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-advanced {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* チェックボックスカスタム */
+.checkbox-snow {
+  accent-color: var(--winter-sky);
+}
