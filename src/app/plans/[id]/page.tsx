@@ -14,6 +14,16 @@ interface Props {
 
 const requirementOrder: RequirementLevel[] = ['必須', 'あると便利'];
 
+// 交通費を計算する関数
+function calculateTotalTransportCost(accessItems: AccessItem[]): number {
+  return accessItems.reduce((total, item) => {
+    if (!item.cost) return total;
+    // "4,130円" -> 4130 のように変換
+    const costNumber = parseInt(item.cost.replace(/[,円]/g, ''), 10);
+    return total + (isNaN(costNumber) ? 0 : costNumber);
+  }, 0);
+}
+
 export default async function PlanDetailPage({ params }: Props) {
   const { id } = await params;
   const plan = (plans as Plan[]).find((p) => p.id === id);
@@ -26,6 +36,9 @@ export default async function PlanDetailPage({ params }: Props) {
   const planEquipment = (equipment as EquipmentItem[]).filter((e) =>
     plan.equipmentIds.includes(e.id)
   );
+  
+  // 交通費の合計を計算
+  const totalTransportCost = plan.access ? calculateTotalTransportCost(plan.access as AccessItem[]) : 0;
 
   // 装備を必須レベル別にグループ化
   const groupedEquipment = requirementOrder.reduce((acc, level) => {
@@ -142,11 +155,13 @@ export default async function PlanDetailPage({ params }: Props) {
                   ))}
                 </div>
               </div>
-              <div className="mt-4 pt-3 border-t border-glacier">
-                <p className="text-xs text-gray-500">
-                  💰 交通費合計: 約6,040円（片道）
-                </p>
-              </div>
+              {totalTransportCost > 0 && (
+                <div className="mt-4 pt-3 border-t border-glacier">
+                  <p className="text-sm font-medium text-mountain-dark">
+                    💰 交通費合計: {totalTransportCost.toLocaleString()}円（片道）
+                  </p>
+                </div>
+              )}
             </Card>
           )}
 
