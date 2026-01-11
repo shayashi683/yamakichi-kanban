@@ -1,0 +1,51 @@
+[
+  {
+    "id": "plan-yatsugatake-202601",
+    "title": "八ヶ岳（赤岳）日帰り登山",
+    "mountainId": "mt-yatsugatake",
+    "date": "2026-01-25",
+    "schedule": [
+      { "time": "05:00", "activity": "美濃戸口 出発", "location": "美濃戸口駐車場" },
+      { "time": "06:00", "activity": "美濃戸山荘 通過", "location": "美濃戸山荘" },
+      { "time": "08:00", "activity": "行者小屋 到着・休憩", "location": "行者小屋" },
+      { "time": "08:30", "activity": "行者小屋 出発（文三郎尾根）", "location": "行者小屋" },
+      { "time": "10:30", "activity": "赤岳山頂 到着", "location": "赤岳山頂" },
+      { "time": "11:00", "activity": "赤岳山頂 出発", "location": "赤岳山頂" },
+      { "time": "12:30", "activity": "行者小屋 到着・昼食", "location": "行者小屋" },
+      { "time": "13:30", "activity": "行者小屋 出発", "location": "行者小屋" },
+      { "time": "15:30", "activity": "美濃戸口 到着", "location": "美濃戸口駐車場" }
+    ],
+    "equipmentIds": [
+      "eq-base-layer",
+      "eq-mid-layer",
+      "eq-rain-jacket",
+      "eq-rain-pants",
+      "eq-hiking-pants",
+      "eq-winter-boots",
+      "eq-socks",
+      "eq-hat",
+      "eq-gloves",
+      "eq-down-jacket",
+      "eq-balaclava",
+      "eq-backpack",
+      "eq-trekking-poles",
+      "eq-headlamp",
+      "eq-map-compass",
+      "eq-sunglasses",
+      "eq-goggles",
+      "eq-helmet",
+      "eq-crampons",
+      "eq-ice-axe",
+      "eq-water",
+      "eq-food",
+      "eq-emergency-food",
+      "eq-first-aid",
+      "eq-emergency-sheet",
+      "eq-whistle",
+      "eq-mobile-battery"
+    ],
+    "memo": "冬季登山のため、アイゼン・ピッケル必須。天候悪化時は行者小屋で撤退判断。",
+    "createdAt": "2026-01-10T09:00:00Z",
+    "updatedAt": "2026-01-10T09:00:00Z"
+  }
+]

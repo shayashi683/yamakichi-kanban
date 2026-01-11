@@ -1,0 +1,258 @@
+[
+  {
+    "id": "eq-base-layer",
+    "name": "ベースレイヤー（速乾性インナー）",
+    "category": "服装",
+    "description": "汗を素早く発散させる化繊またはメリノウール素材",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-mid-layer",
+    "name": "ミドルレイヤー（フリース等）",
+    "category": "服装",
+    "description": "保温性のある中間着",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-rain-jacket",
+    "name": "レインウェア（上）",
+    "category": "服装",
+    "description": "防水透湿素材のジャケット",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-rain-pants",
+    "name": "レインウェア（下）",
+    "category": "服装",
+    "description": "防水透湿素材のパンツ",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-hiking-pants",
+    "name": "トレッキングパンツ",
+    "category": "服装",
+    "description": "動きやすく速乾性のあるパンツ",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-hiking-boots",
+    "name": "登山靴",
+    "category": "服装",
+    "description": "足首をサポートするハイカットタイプ推奨",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-socks",
+    "name": "登山用靴下",
+    "category": "服装",
+    "description": "厚手でクッション性のある靴下",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-hat",
+    "name": "帽子",
+    "category": "服装",
+    "description": "日よけ・防寒用",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-gloves",
+    "name": "グローブ",
+    "category": "服装",
+    "description": "防寒・岩場での手の保護用",
+    "required": false,
+    "forWinter": true
+  },
+  {
+    "id": "eq-down-jacket",
+    "name": "ダウンジャケット",
+    "category": "服装",
+    "description": "休憩時や緊急時の保温用",
+    "required": false,
+    "forWinter": true
+  },
+  {
+    "id": "eq-backpack",
+    "name": "ザック（30〜40L）",
+    "category": "ギア",
+    "description": "日帰り〜小屋泊用",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-trekking-poles",
+    "name": "トレッキングポール",
+    "category": "ギア",
+    "description": "膝への負担軽減、バランス保持用",
+    "required": false,
+    "forWinter": false
+  },
+  {
+    "id": "eq-headlamp",
+    "name": "ヘッドランプ",
+    "category": "ギア",
+    "description": "予備電池も忘れずに",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-map-compass",
+    "name": "地図・コンパス",
+    "category": "ギア",
+    "description": "GPS機器があっても持参推奨",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-sunglasses",
+    "name": "サングラス",
+    "category": "ギア",
+    "description": "紫外線から目を保護",
+    "required": true,
+    "forWinter": true
+  },
+  {
+    "id": "eq-helmet",
+    "name": "ヘルメット",
+    "category": "ギア",
+    "description": "岩稜帯や落石の危険がある山で使用",
+    "required": false,
+    "forWinter": false
+  },
+  {
+    "id": "eq-water",
+    "name": "飲料水（1.5〜2L）",
+    "category": "食料・水",
+    "description": "行動時間に応じて調整",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-food",
+    "name": "行動食",
+    "category": "食料・水",
+    "description": "おにぎり、パン、エナジーバーなど",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-emergency-food",
+    "name": "非常食",
+    "category": "食料・水",
+    "description": "カロリーメイトなど日持ちするもの",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-first-aid",
+    "name": "ファーストエイドキット",
+    "category": "緊急用品",
+    "description": "絆創膏、テーピング、鎮痛剤など",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-emergency-sheet",
+    "name": "エマージェンシーシート",
+    "category": "緊急用品",
+    "description": "緊急時の保温用",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-whistle",
+    "name": "ホイッスル",
+    "category": "緊急用品",
+    "description": "緊急時の合図用",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-mobile-battery",
+    "name": "モバイルバッテリー",
+    "category": "緊急用品",
+    "description": "スマートフォンの充電用",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-sunscreen",
+    "name": "日焼け止め",
+    "category": "その他",
+    "description": "高山では紫外線が強い",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-insect-repellent",
+    "name": "虫除けスプレー",
+    "category": "その他",
+    "description": "夏山では必須",
+    "required": false,
+    "forWinter": false
+  },
+  {
+    "id": "eq-tissue",
+    "name": "ティッシュ・トイレットペーパー",
+    "category": "その他",
+    "description": "山のトイレや緊急時用",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-garbage-bag",
+    "name": "ゴミ袋",
+    "category": "その他",
+    "description": "ゴミは必ず持ち帰る",
+    "required": true,
+    "forWinter": false
+  },
+  {
+    "id": "eq-crampons",
+    "name": "アイゼン（12本爪）",
+    "category": "ギア",
+    "description": "雪山・凍結した登山道用",
+    "required": true,
+    "forWinter": true
+  },
+  {
+    "id": "eq-ice-axe",
+    "name": "ピッケル",
+    "category": "ギア",
+    "description": "雪山での滑落停止・歩行補助",
+    "required": true,
+    "forWinter": true
+  },
+  {
+    "id": "eq-winter-boots",
+    "name": "冬山用登山靴",
+    "category": "服装",
+    "description": "保温性が高くアイゼン対応",
+    "required": true,
+    "forWinter": true
+  },
+  {
+    "id": "eq-balaclava",
+    "name": "バラクラバ",
+    "category": "服装",
+    "description": "顔面の防寒用",
+    "required": true,
+    "forWinter": true
+  },
+  {
+    "id": "eq-goggles",
+    "name": "ゴーグル",
+    "category": "ギア",
+    "description": "吹雪時の視界確保・目の保護",
+    "required": true,
+    "forWinter": true
+  }
+]
