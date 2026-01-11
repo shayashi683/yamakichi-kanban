@@ -6,13 +6,13 @@ import Badge from '@/components/Badge';
 import plans from '@/data/plans.json';
 import mountains from '@/data/mountains.json';
 import equipment from '@/data/equipment.json';
-import { Plan, Mountain, EquipmentItem, Difficulty, EquipmentCategory } from '@/types';
+import { Plan, Mountain, EquipmentItem, Difficulty, RequirementLevel, AccessItem, ReferenceLink } from '@/types';
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-const categoryOrder: EquipmentCategory[] = ['服装', 'ギア', '食料・水', '緊急用品', 'その他'];
+const requirementOrder: RequirementLevel[] = ['必須', 'あると便利'];
 
 export default async function PlanDetailPage({ params }: Props) {
   const { id } = await params;
@@ -27,11 +27,11 @@ export default async function PlanDetailPage({ params }: Props) {
     plan.equipmentIds.includes(e.id)
   );
 
-  // 装備をカテゴリ別にグループ化
-  const groupedEquipment = categoryOrder.reduce((acc, category) => {
-    acc[category] = planEquipment.filter((item) => item.category === category);
+  // 装備を必須レベル別にグループ化
+  const groupedEquipment = requirementOrder.reduce((acc, level) => {
+    acc[level] = planEquipment.filter((item) => item.requirementLevel === level);
     return acc;
-  }, {} as Record<EquipmentCategory, EquipmentItem[]>);
+  }, {} as Record<RequirementLevel, EquipmentItem[]>);
 
   const planDate = new Date(plan.date);
 
@@ -103,6 +103,53 @@ export default async function PlanDetailPage({ params }: Props) {
             </div>
           </Card>
 
+          {/* アクセス */}
+          {plan.access && plan.access.length > 0 && (
+            <Card>
+              <h2 className="font-bold text-lg text-night-blue mb-4">🚃 アクセス</h2>
+              <div className="relative">
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-glacier" />
+                <div className="space-y-3">
+                  {(plan.access as AccessItem[]).map((item, index) => (
+                    <div key={index} className="flex gap-4 relative">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-deep-blue text-white flex items-center justify-center text-xs font-bold z-10">
+                        {index + 1}
+                      </div>
+                      <div className="flex-1 pb-2">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <span className="font-bold text-night-blue">{item.time}</span>
+                          {item.transportUrl ? (
+                            <a
+                              href={item.transportUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs px-2 py-0.5 bg-sky-light text-deep-blue rounded-full hover:bg-winter-sky hover:text-white transition-colors"
+                            >
+                              {item.transport} ↗
+                            </a>
+                          ) : (
+                            <span className="text-xs px-2 py-0.5 bg-sky-light text-deep-blue rounded-full">
+                              {item.transport}
+                            </span>
+                          )}
+                          {item.cost && (
+                            <span className="text-xs text-gray-500">({item.cost})</span>
+                          )}
+                        </div>
+                        <p className="text-mountain-dark text-sm">{item.activity}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-4 pt-3 border-t border-glacier">
+                <p className="text-xs text-gray-500">
+                  💰 交通費合計: 約6,040円（片道）
+                </p>
+              </div>
+            </Card>
+          )}
+
           {/* タイムスケジュール */}
           <Card>
             <h2 className="font-bold text-lg text-night-blue mb-4">⏱️ タイムスケジュール</h2>
@@ -153,20 +200,25 @@ export default async function PlanDetailPage({ params }: Props) {
               </span>
             </h2>
             <div className="space-y-4">
-              {categoryOrder.map((category) => {
-                const items = groupedEquipment[category];
+              {requirementOrder.map((level) => {
+                const items = groupedEquipment[level];
                 if (items.length === 0) return null;
 
                 return (
-                  <div key={category}>
-                    <h3 className="text-sm font-medium text-gray-500 mb-2">{category}</h3>
+                  <div key={level}>
+                    <h3 className={`text-sm font-medium mb-2 ${
+                      level === '必須' ? 'text-red-600' : 'text-gray-500'
+                    }`}>
+                      {level === '必須' ? '🔴 必須' : '🟡 あると便利'}
+                      <span className="ml-1 text-xs">({items.length}点)</span>
+                    </h3>
                     <ul className="space-y-1">
                       {items.map((item) => (
                         <li
                           key={item.id}
                           className="flex items-center gap-2 text-sm text-mountain-dark"
                         >
-                          <span className="text-winter-sky">✓</span>
+                          <span className={level === '必須' ? 'text-red-500' : 'text-yellow-500'}>✓</span>
                           {item.name}
                           {item.forWinter && (
                             <span className="text-xs text-blue-500">❄️</span>
@@ -203,6 +255,27 @@ export default async function PlanDetailPage({ params }: Props) {
           )}
         </div>
       </div>
+
+      {/* 参考リンク（ページ最下部） */}
+      {plan.links && plan.links.length > 0 && (
+        <Card className="mt-6">
+          <h2 className="font-bold text-lg text-night-blue mb-4">🔗 参考リンク</h2>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {(plan.links as ReferenceLink[]).map((link, index) => (
+              <a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-glacier transition-colors text-winter-sky hover:text-deep-blue"
+              >
+                <span className="text-gray-400">→</span>
+                <span className="text-sm underline">{link.title}</span>
+              </a>
+            ))}
+          </div>
+        </Card>
+      )}
     </div>
   );
 }

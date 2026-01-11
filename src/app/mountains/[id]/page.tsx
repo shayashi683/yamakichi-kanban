@@ -80,6 +80,16 @@ export default async function MountainDetailPage({ params }: Props) {
           <Card>
             <h2 className="font-bold text-lg text-night-blue mb-4">🚃 アクセス</h2>
             <p className="text-mountain-dark leading-relaxed">{mountain.access}</p>
+            {mountain.accessUrl && (
+              <a
+                href={mountain.accessUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 mt-3 text-sm text-winter-sky hover:text-deep-blue"
+              >
+                詳細を見る ↗
+              </a>
+            )}
           </Card>
 
           {/* 注意事項カード */}
@@ -122,6 +132,22 @@ export default async function MountainDetailPage({ params }: Props) {
               ))}
             </div>
           </Card>
+
+          {/* 参考リンク */}
+          {mountain.referenceUrl && (
+            <Card>
+              <h2 className="font-bold text-lg text-night-blue mb-4">🔗 参考情報</h2>
+              <a
+                href={mountain.referenceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-winter-sky hover:text-deep-blue transition-colors"
+              >
+                <span className="text-gray-400">→</span>
+                <span className="text-sm underline">山と溪谷オンライン ↗</span>
+              </a>
+            </Card>
+          )}
 
           {/* アクションボタン */}
           <Card>

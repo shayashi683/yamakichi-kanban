@@ -5,7 +5,7 @@ import PageHeader from '@/components/PageHeader';
 import Card from '@/components/Card';
 import equipment from '@/data/equipment.json';
 import templates from '@/data/equipment-templates.json';
-import { EquipmentItem, EquipmentCategory, EquipmentTemplate, TripType } from '@/types';
+import { EquipmentItem, EquipmentCategory, EquipmentTemplate, TripType, RequirementLevel } from '@/types';
 
 const categoryIcons: Record<EquipmentCategory, string> = {
   '服装': '👕',
@@ -199,9 +199,13 @@ export default function EquipmentPage() {
                           >
                             {item.name}
                           </span>
-                          {item.required && (
+                          {item.requirementLevel === '必須' ? (
                             <span className="text-xs px-2 py-0.5 bg-red-100 text-red-700 rounded-full">
                               必須
+                            </span>
+                          ) : (
+                            <span className="text-xs px-2 py-0.5 bg-yellow-100 text-yellow-700 rounded-full">
+                              あると便利
                             </span>
                           )}
                           {item.forWinter && (

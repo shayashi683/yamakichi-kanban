@@ -23,11 +23,11 @@ export default function Home() {
             安全で楽しい登山をサポートする計画アプリ
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/mountains" className="btn-primary bg-white/20 hover:bg-white/30">
-              山を探す
-            </Link>
             <Link href="/plans" className="btn-primary bg-white/20 hover:bg-white/30">
               計画を見る
+            </Link>
+            <Link href="/mountains" className="btn-primary bg-white/20 hover:bg-white/30">
+              山を探す
             </Link>
           </div>
         </div>
@@ -35,17 +35,17 @@ export default function Home() {
 
       {/* クイックアクセス */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <Link href="/plans" className="card p-4 text-center hover:scale-105 transition-transform">
+          <span className="text-3xl mb-2 block">📋</span>
+          <span className="font-medium text-mountain-dark">計画</span>
+        </Link>
         <Link href="/mountains" className="card p-4 text-center hover:scale-105 transition-transform">
           <span className="text-3xl mb-2 block">⛰️</span>
           <span className="font-medium text-mountain-dark">山情報</span>
         </Link>
         <Link href="/equipment" className="card p-4 text-center hover:scale-105 transition-transform">
           <span className="text-3xl mb-2 block">🎒</span>
-          <span className="font-medium text-mountain-dark">装備管理</span>
-        </Link>
-        <Link href="/plans" className="card p-4 text-center hover:scale-105 transition-transform">
-          <span className="text-3xl mb-2 block">📋</span>
-          <span className="font-medium text-mountain-dark">計画</span>
+          <span className="font-medium text-mountain-dark">装備</span>
         </Link>
         <Link href="/admin" className="card p-4 text-center hover:scale-105 transition-transform">
           <span className="text-3xl mb-2 block">⚙️</span>

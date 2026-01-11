@@ -4,7 +4,7 @@
     "name": "ベースレイヤー（速乾性インナー）",
     "category": "服装",
     "description": "汗を素早く発散させる化繊またはメリノウール素材",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -12,7 +12,7 @@
     "name": "ミドルレイヤー（フリース等）",
     "category": "服装",
     "description": "保温性のある中間着",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -20,7 +20,7 @@
     "name": "レインウェア（上）",
     "category": "服装",
     "description": "防水透湿素材のジャケット",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -28,7 +28,7 @@
     "name": "レインウェア（下）",
     "category": "服装",
     "description": "防水透湿素材のパンツ",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -36,7 +36,7 @@
     "name": "トレッキングパンツ",
     "category": "服装",
     "description": "動きやすく速乾性のあるパンツ",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -44,7 +44,7 @@
     "name": "登山靴",
     "category": "服装",
     "description": "足首をサポートするハイカットタイプ推奨",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -52,7 +52,7 @@
     "name": "登山用靴下",
     "category": "服装",
     "description": "厚手でクッション性のある靴下",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -60,7 +60,7 @@
     "name": "帽子",
     "category": "服装",
     "description": "日よけ・防寒用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -68,7 +68,7 @@
     "name": "グローブ",
     "category": "服装",
     "description": "防寒・岩場での手の保護用",
-    "required": false,
+    "requirementLevel": "必須",
     "forWinter": true
   },
   {
@@ -76,7 +76,7 @@
     "name": "ダウンジャケット",
     "category": "服装",
     "description": "休憩時や緊急時の保温用",
-    "required": false,
+    "requirementLevel": "必須",
     "forWinter": true
   },
   {
@@ -84,7 +84,7 @@
     "name": "ザック（30〜40L）",
     "category": "ギア",
     "description": "日帰り〜小屋泊用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -92,7 +92,7 @@
     "name": "トレッキングポール",
     "category": "ギア",
     "description": "膝への負担軽減、バランス保持用",
-    "required": false,
+    "requirementLevel": "あると便利",
     "forWinter": false
   },
   {
@@ -100,7 +100,7 @@
     "name": "ヘッドランプ",
     "category": "ギア",
     "description": "予備電池も忘れずに",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -108,7 +108,7 @@
     "name": "地図・コンパス",
     "category": "ギア",
     "description": "GPS機器があっても持参推奨",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -116,7 +116,7 @@
     "name": "サングラス",
     "category": "ギア",
     "description": "紫外線から目を保護",
-    "required": true,
+    "requirementLevel": "あると便利",
     "forWinter": true
   },
   {
@@ -124,7 +124,7 @@
     "name": "ヘルメット",
     "category": "ギア",
     "description": "岩稜帯や落石の危険がある山で使用",
-    "required": false,
+    "requirementLevel": "あると便利",
     "forWinter": false
   },
   {
@@ -132,7 +132,7 @@
     "name": "飲料水（1.5〜2L）",
     "category": "食料・水",
     "description": "行動時間に応じて調整",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -140,7 +140,7 @@
     "name": "行動食",
     "category": "食料・水",
     "description": "おにぎり、パン、エナジーバーなど",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -148,7 +148,7 @@
     "name": "非常食",
     "category": "食料・水",
     "description": "カロリーメイトなど日持ちするもの",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -156,7 +156,7 @@
     "name": "ファーストエイドキット",
     "category": "緊急用品",
     "description": "絆創膏、テーピング、鎮痛剤など",
-    "required": true,
+    "requirementLevel": "あると便利",
     "forWinter": false
   },
   {
@@ -164,7 +164,7 @@
     "name": "エマージェンシーシート",
     "category": "緊急用品",
     "description": "緊急時の保温用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -172,7 +172,7 @@
     "name": "ホイッスル",
     "category": "緊急用品",
     "description": "緊急時の合図用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -180,7 +180,7 @@
     "name": "モバイルバッテリー",
     "category": "緊急用品",
     "description": "スマートフォンの充電用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -188,7 +188,7 @@
     "name": "日焼け止め",
     "category": "その他",
     "description": "高山では紫外線が強い",
-    "required": true,
+    "requirementLevel": "あると便利",
     "forWinter": false
   },
   {
@@ -196,7 +196,7 @@
     "name": "虫除けスプレー",
     "category": "その他",
     "description": "夏山では必須",
-    "required": false,
+    "requirementLevel": "あると便利",
     "forWinter": false
   },
   {
@@ -204,7 +204,7 @@
     "name": "ティッシュ・トイレットペーパー",
     "category": "その他",
     "description": "山のトイレや緊急時用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -212,7 +212,7 @@
     "name": "ゴミ袋",
     "category": "その他",
     "description": "ゴミは必ず持ち帰る",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": false
   },
   {
@@ -220,7 +220,7 @@
     "name": "アイゼン（12本爪）",
     "category": "ギア",
     "description": "雪山・凍結した登山道用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": true
   },
   {
@@ -228,7 +228,7 @@
     "name": "ピッケル",
     "category": "ギア",
     "description": "雪山での滑落停止・歩行補助",
-    "required": true,
+    "requirementLevel": "あると便利",
     "forWinter": true
   },
   {
@@ -236,7 +236,7 @@
     "name": "冬山用登山靴",
     "category": "服装",
     "description": "保温性が高くアイゼン対応",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": true
   },
   {
@@ -244,7 +244,7 @@
     "name": "バラクラバ",
     "category": "服装",
     "description": "顔面の防寒用",
-    "required": true,
+    "requirementLevel": "必須",
     "forWinter": true
   },
   {
@@ -252,7 +252,15 @@
     "name": "ゴーグル",
     "category": "ギア",
     "description": "吹雪時の視界確保・目の保護",
-    "required": true,
+    "requirementLevel": "あると便利",
+    "forWinter": true
+  },
+  {
+    "id": "eq-knit-cap",
+    "name": "ニット帽",
+    "category": "服装",
+    "description": "頭部の防寒用",
+    "requirementLevel": "必須",
     "forWinter": true
   }
 ]
