@@ -6,13 +6,21 @@ import Badge from '@/components/Badge';
 import plans from '@/data/plans.json';
 import mountains from '@/data/mountains.json';
 import equipment from '@/data/equipment.json';
-import { Plan, Mountain, EquipmentItem, Difficulty, RequirementLevel, AccessItem, ReferenceLink } from '@/types';
+import { Plan, Mountain, EquipmentItem, Difficulty, EquipmentCategory, AccessItem, ReferenceLink } from '@/types';
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-const requirementOrder: RequirementLevel[] = ['必須', 'あると便利'];
+const categoryOrder: EquipmentCategory[] = ['服装', 'ギア', '食料・水', '緊急用品', 'その他'];
+
+const categoryIcons: Record<EquipmentCategory, string> = {
+  '服装': '👕',
+  'ギア': '🧰',
+  '食料・水': '🍙',
+  '緊急用品': '🆘',
+  'その他': '📦',
+};
 
 // 交通費を計算する関数
 function calculateTotalTransportCost(accessItems: AccessItem[]): number {
@@ -40,11 +48,18 @@ export default async function PlanDetailPage({ params }: Props) {
   // 交通費の合計を計算
   const totalTransportCost = plan.access ? calculateTotalTransportCost(plan.access as AccessItem[]) : 0;
 
-  // 装備を必須レベル別にグループ化
-  const groupedEquipment = requirementOrder.reduce((acc, level) => {
-    acc[level] = planEquipment.filter((item) => item.requirementLevel === level);
+  // 装備をカテゴリ別にグループ化（必須を先に）
+  const groupedEquipment = categoryOrder.reduce((acc, category) => {
+    const items = planEquipment.filter((item) => item.category === category);
+    // 必須を先にソート
+    items.sort((a, b) => {
+      if (a.requirementLevel === '必須' && b.requirementLevel !== '必須') return -1;
+      if (a.requirementLevel !== '必須' && b.requirementLevel === '必須') return 1;
+      return 0;
+    });
+    acc[category] = items;
     return acc;
-  }, {} as Record<RequirementLevel, EquipmentItem[]>);
+  }, {} as Record<EquipmentCategory, EquipmentItem[]>);
 
   const planDate = new Date(plan.date);
 
@@ -215,26 +230,30 @@ export default async function PlanDetailPage({ params }: Props) {
               </span>
             </h2>
             <div className="space-y-4">
-              {requirementOrder.map((level) => {
-                const items = groupedEquipment[level];
+              {categoryOrder.map((category) => {
+                const items = groupedEquipment[category];
                 if (items.length === 0) return null;
 
                 return (
-                  <div key={level}>
-                    <h3 className={`text-sm font-medium mb-2 ${
-                      level === '必須' ? 'text-red-600' : 'text-gray-500'
-                    }`}>
-                      {level === '必須' ? '🔴 必須' : '🟡 あると便利'}
-                      <span className="ml-1 text-xs">({items.length}点)</span>
+                  <div key={category}>
+                    <h3 className="text-sm font-medium mb-2 text-night-blue flex items-center gap-1">
+                      <span>{categoryIcons[category]}</span>
+                      {category}
+                      <span className="ml-1 text-xs text-gray-500">({items.length}点)</span>
                     </h3>
                     <ul className="space-y-1">
                       {items.map((item) => (
                         <li
                           key={item.id}
-                          className="flex items-center gap-2 text-sm text-mountain-dark"
+                          className="flex items-center gap-2 text-sm text-mountain-dark flex-wrap"
                         >
-                          <span className={level === '必須' ? 'text-red-500' : 'text-yellow-500'}>✓</span>
-                          {item.name}
+                          <span className={item.requirementLevel === '必須' ? 'text-red-500' : 'text-yellow-500'}>✓</span>
+                          <span>{item.name}</span>
+                          {item.requirementLevel === '必須' ? (
+                            <span className="text-xs px-1.5 py-0.5 bg-red-100 text-red-700 rounded">必須</span>
+                          ) : (
+                            <span className="text-xs px-1.5 py-0.5 bg-yellow-100 text-yellow-700 rounded">便利</span>
+                          )}
                           {item.forWinter && (
                             <span className="text-xs text-blue-500">❄️</span>
                           )}

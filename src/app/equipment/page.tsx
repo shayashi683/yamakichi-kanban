@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import Card from '@/components/Card';
 import equipment from '@/data/equipment.json';
-import templates from '@/data/equipment-templates.json';
-import { EquipmentItem, EquipmentCategory, EquipmentTemplate } from '@/types';
+import plans from '@/data/plans.json';
+import { EquipmentItem, EquipmentCategory, Plan } from '@/types';
 
 const categoryIcons: Record<EquipmentCategory, string> = {
   '服装': '👕',
@@ -19,8 +19,15 @@ const categoryOrder: EquipmentCategory[] = ['服装', 'ギア', '食料・水', 
 
 export default function EquipmentPage() {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('');
-  const [showWinterOnly, setShowWinterOnly] = useState(false);
+
+  // 最新の計画から装備リストを取得
+  const latestPlan = (plans as Plan[])[0];
+  const planEquipmentIds = latestPlan?.equipmentIds || [];
+
+  // 計画の装備リストに含まれる装備だけをフィルタリング
+  const planEquipment = (equipment as EquipmentItem[]).filter((item) =>
+    planEquipmentIds.includes(item.id)
+  );
 
   // ローカルストレージから読み込み（初回マウント時のみ）
   useEffect(() => {
@@ -42,43 +49,30 @@ export default function EquipmentPage() {
     );
   };
 
-  const applyTemplate = (templateId: string) => {
-    const template = (templates as EquipmentTemplate[]).find((t) => t.id === templateId);
-    if (template) {
-      setCheckedItems([]);
-      setSelectedTemplate(templateId);
-    }
-  };
-
   const clearAll = () => {
     setCheckedItems([]);
   };
 
   const checkAll = () => {
-    const allIds = (equipment as EquipmentItem[]).map((item) => item.id);
+    const allIds = planEquipment.map((item) => item.id);
     setCheckedItems(allIds);
   };
 
-  // フィルタリング
-  const filteredEquipment = (equipment as EquipmentItem[]).filter((item) => {
-    if (showWinterOnly && !item.forWinter) return false;
-    return true;
-  });
-
-  // カテゴリ別にグループ化
+  // カテゴリ別にグループ化（必須を先に）
   const groupedEquipment = categoryOrder.reduce((acc, category) => {
-    acc[category] = filteredEquipment.filter((item) => item.category === category);
+    const items = planEquipment.filter((item) => item.category === category);
+    items.sort((a, b) => {
+      if (a.requirementLevel === '必須' && b.requirementLevel !== '必須') return -1;
+      if (a.requirementLevel !== '必須' && b.requirementLevel === '必須') return 1;
+      return 0;
+    });
+    acc[category] = items;
     return acc;
   }, {} as Record<EquipmentCategory, EquipmentItem[]>);
 
-  // 選択中のテンプレートのアイテムリスト
-  const templateItems = selectedTemplate
-    ? (templates as EquipmentTemplate[]).find((t) => t.id === selectedTemplate)?.items || []
-    : [];
-
-  const totalItems = filteredEquipment.length;
+  const totalItems = planEquipment.length;
   const checkedCount = checkedItems.filter((id) =>
-    filteredEquipment.some((item) => item.id === id)
+    planEquipment.some((item) => item.id === id)
   ).length;
   const progress = totalItems > 0 ? (checkedCount / totalItems) * 100 : 0;
 
@@ -89,31 +83,6 @@ export default function EquipmentPage() {
         description="登山に必要な装備をチェックリストで管理できます"
         icon="🎒"
       />
-
-      {/* テンプレート選択 */}
-      <Card className="mb-6">
-        <h2 className="font-bold text-lg text-night-blue mb-4">📝 テンプレートから選択</h2>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {(templates as EquipmentTemplate[]).map((template) => (
-            <button
-              key={template.id}
-              onClick={() => applyTemplate(template.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                selectedTemplate === template.id
-                  ? 'bg-night-blue text-white'
-                  : 'bg-glacier text-mountain-dark hover:bg-sky-light'
-              }`}
-            >
-              {template.name}
-            </button>
-          ))}
-        </div>
-        {selectedTemplate && (
-          <p className="text-sm text-gray-600">
-            選択中のテンプレートには {templateItems.length} アイテムが含まれています
-          </p>
-        )}
-      </Card>
 
       {/* 進捗バー */}
       <Card className="mb-6">
@@ -142,15 +111,6 @@ export default function EquipmentPage() {
           >
             すべてクリア
           </button>
-          <label className="flex items-center gap-2 ml-auto">
-            <input
-              type="checkbox"
-              checked={showWinterOnly}
-              onChange={(e) => setShowWinterOnly(e.target.checked)}
-              className="checkbox-snow w-4 h-4"
-            />
-            <span className="text-sm text-mountain-dark">冬山装備のみ</span>
-          </label>
         </div>
       </Card>
 
@@ -172,7 +132,6 @@ export default function EquipmentPage() {
               <div className="space-y-2">
                 {items.map((item) => {
                   const isChecked = checkedItems.includes(item.id);
-                  const isInTemplate = templateItems.includes(item.id);
 
                   return (
                     <label
@@ -180,8 +139,6 @@ export default function EquipmentPage() {
                       className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-all ${
                         isChecked
                           ? 'bg-green-50 border border-green-200'
-                          : isInTemplate
-                          ? 'bg-sky-50 border border-sky-200'
                           : 'bg-glacier/50 border border-transparent hover:bg-glacier'
                       }`}
                     >
