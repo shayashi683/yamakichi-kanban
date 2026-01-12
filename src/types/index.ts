@@ -77,6 +77,7 @@ export interface Plan {
   schedule: PlanScheduleItem[];
   equipmentIds: string[]; // 選択した装備のid配列
   memo: string;
+  notionMemoUrl?: string; // Notionメモへのリンク（任意）
   links?: ReferenceLink[]; // 参考リンク（任意）
   createdAt: string;
   updatedAt: string;

@@ -211,10 +211,26 @@ export default async function PlanDetailPage({ params }: Props) {
           </Card>
 
           {/* メモ */}
-          {plan.memo && (
+          {(plan.memo || plan.notionMemoUrl) && (
             <Card>
               <h2 className="font-bold text-lg text-night-blue mb-4">📝 メモ</h2>
-              <p className="text-mountain-dark whitespace-pre-wrap">{plan.memo}</p>
+              {plan.memo && (
+                <p className="text-mountain-dark whitespace-pre-wrap">{plan.memo}</p>
+              )}
+              {plan.notionMemoUrl && (
+                <div className={plan.memo ? 'mt-4 pt-4 border-t border-glacier' : ''}>
+                  <a
+                    href={plan.notionMemoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  >
+                    <span>📓</span>
+                    <span>Notionで詳細メモを見る</span>
+                    <span className="text-gray-400">↗</span>
+                  </a>
+                </div>
+              )}
             </Card>
           )}
         </div>
