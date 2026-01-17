@@ -10,7 +10,11 @@
       { "time": "07:00", "activity": "新宿駅 出発（あずさ1号）", "transport": "JR特急あずさ1号", "transportUrl": "https://www.eki-net.com/", "cost": "4,130円" },
       { "time": "09:07", "activity": "茅野駅 到着", "transport": "JR特急あずさ1号", "transportUrl": "https://www.navitime.co.jp/diagram/depArrTimeList?departure=00004254&arrival=00001305&line=00000176&updown=1" },
       { "time": "09:30", "activity": "茅野駅西口 バス乗車（2番のりば）", "transport": "アルピコ交通バス", "transportUrl": "https://www.alpico.co.jp/traffic/local/suwa/kitayatsugatake/", "cost": "1,700円" },
-      { "time": "10:20", "activity": "北八ヶ岳ロープウェイ 到着", "transport": "アルピコ交通バス", "transportUrl": "https://www.kitayatu.jp/access/" }
+      { "time": "10:20", "activity": "北八ヶ岳ロープウェイ 到着", "transport": "アルピコ交通バス", "transportUrl": "https://www.kitayatu.jp/access/" },
+      { "time": "15:45", "activity": "北八ヶ岳ロープウェイ バス乗車", "transport": "アルピコ交通バス", "transportUrl": "https://www.alpico.co.jp/traffic/local/suwa/kitayatsugatake/", "cost": "1,700円" },
+      { "time": "16:37", "activity": "茅野駅 到着", "transport": "アルピコ交通バス" },
+      { "time": "16:59", "activity": "茅野駅 出発", "transport": "JR特急", "transportUrl": "https://www.eki-net.com/", "cost": "4,130円" },
+      { "time": "19:06", "activity": "新宿駅 到着", "transport": "JR特急" }
     ],
     "schedule": [
       { "time": "10:30", "activity": "北八ヶ岳ロープウェイ山麓駅 到着・チケット購入", "location": "山麓駅" },
