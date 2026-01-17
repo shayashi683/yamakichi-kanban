@@ -238,5 +238,21 @@
     "description": "吹雪時の視界確保・目の保護",
     "requirementLevel": "あると便利",
     "forWinter": true
+  },
+  {
+    "id": "eq-knit-hat",
+    "name": "ニット帽",
+    "category": "服装",
+    "description": "防寒用。耳まで隠れるものが良い",
+    "requirementLevel": "必須",
+    "forWinter": true
+  },
+  {
+    "id": "eq-wallet",
+    "name": "財布",
+    "category": "その他",
+    "description": "現金（バス・トイレ用小銭含む）・カード・保険証",
+    "requirementLevel": "必須",
+    "forWinter": false
   }
 ]
