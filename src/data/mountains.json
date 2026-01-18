@@ -56,5 +56,21 @@
     "description": "北八ヶ岳の代表的な山。ロープウェイで標高2,200mまで上がれるため、冬山入門として大人気。山頂は北峰(2,480m)と南峰(2,473m)の二峰に分かれ、南峰からは八ヶ岳主脈や北アルプスを一望できる。",
     "notes": "冬季は-15〜-20度になることも。坪庭や山頂は風が強いため防寒対策必須。ガスや吹雪時は視界不良に注意。15時前の下山を目安に。",
     "referenceUrl": "https://www.yamakei-online.com/yamanavi/yama.php?yama_id=444"
+  },
+  {
+    "id": "mt-hotakayama",
+    "name": "武尊山",
+    "nameKana": "ほたかやま",
+    "elevation": 2158,
+    "location": "群馬県",
+    "difficulty": "中級",
+    "courseTime": "5〜6時間（川場スキー場リフト利用）",
+    "bestSeason": ["1月", "2月", "3月", "6月", "7月", "8月", "9月", "10月"],
+    "access": "関越道沼田ICから車で約40分（川場スキー場）",
+    "accessUrl": "https://www.kawaba.co.jp/snow/activity/trekking/",
+    "features": ["日本百名山", "雪山", "リフト利用", "展望"],
+    "description": "上州武尊山とも呼ばれる日本百名山。川場スキー場のリフトを利用することで、比較的容易に雪山登山を楽しめるため冬も人気。山頂からは360度の大パノラマが広がる。",
+    "notes": "剣ヶ峰山付近は急峻な痩せ尾根があり、滑落に注意。冬季はアイゼン・ピッケル等の雪山装備が必須。天候判断は慎重に。",
+    "referenceUrl": "https://www.yamakei-online.com/yamanavi/yama.php?yama_id=305"
   }
 ]
